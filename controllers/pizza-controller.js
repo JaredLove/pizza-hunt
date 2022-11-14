@@ -16,12 +16,12 @@ const pizzaController = {
 
 
     // Get one pizza by id
-    getPizzaById({ pasarams }, res) {
-        Pizza.findOne({_id: pasarams.id})
+    getPizzaById({ params }, res) {
+        Pizza.findOne({_id: params.id})
         .than (dbPizzaData => {
             //if no pizza is found, sends 404
             if(!dbPizzaData) {
-                res.status(404).json({ Message: 'No pizza found with this id!'})
+                res.status(404).json({ Message: 'No pizza found with this id!'});
                 return;
             }
             res.json(dbPizzaData);
@@ -32,6 +32,7 @@ const pizzaController = {
             res.status(400).json(err);
         });
     },
+    
 
     // create a pizza
     createPizza({ body }, res) {
@@ -73,4 +74,4 @@ const pizzaController = {
 };
 
 
-moduel.exports = pizzaController;
+module.exports = pizzaController;
